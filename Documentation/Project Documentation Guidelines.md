@@ -7,8 +7,7 @@ Document the technical solution and important decisions.
 
 Should include:
 - Architecture diagram  
-- Database schema  
-- APIs (if applicable)  
+- Database schema 
 - Data quality rules  
 - Important technical decisions and changes  
 
@@ -21,22 +20,14 @@ Should include:
 - Decisions made  
 - Action items  
 - Blockers/issues  
-- Assigned responsibilities  
+- Assigned responsibilities
+- What went well
+- What can be improved
 
 ---
 
-### 3. Retrospective Notes
-Document lessons learned and improvement opportunities.
-
-Should include:
-- What went well  
-- What could be improved  
-- Agreed actions for the next sprint  
-
----
-
-### 4. Release Documentation
-Summarize what was delivered.
+### 3. Release Documentation
+Summarize what was delivered in the README.md file in the project root.
 
 Should include:
 - Completed features  
@@ -47,7 +38,7 @@ Should include:
 
 ## Definition of Done (DoD)
 
-A task or user story is considered done when:
+A task is considered done when:
 - Acceptance criteria are met  
 - Code is completed and reviewed  
 - Data quality checks pass  
@@ -59,15 +50,14 @@ A task or user story is considered done when:
 ## Documentation Responsibilities
 
 ### Product Owner
-- Product vision  
-- User stories  
-- Acceptance criteria  
+- Product vision
+- Acceptance criteria per epic
+- Acceptance criteria for the full project
 
 ### Development Team
 - Technical documentation  
 - Architecture diagrams  
 - Data quality documentation  
-- Release documentation  
 
 ---
 
@@ -84,8 +74,7 @@ A task or user story is considered done when:
 ## Where is the documentation stored?
 
 ### Jira
-- User stories  
-- Acceptance criteria  
+- Acceptance criteria
 - Sprint board  
 
 ### GitHub
