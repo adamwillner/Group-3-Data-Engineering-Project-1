@@ -8,8 +8,6 @@ Team Members
 - Mattias Holm
 
 **Mini-Project Goal**
-In this mini-project, we will design and implement an operational database for a light transport equipment 
-rental company. We will then design and implement a simple data warehouse from the operational data, create SQL
-based ETL scripts, validate the data warehouse with SQL queries, and build Power BI reports from the data warehouse. 
+In this mini-project, we will design and implement an operational database for a light transport equipment rental company. We will then design and implement a simple data warehouse from the operational data, create SQL based ETL scripts, validate the data warehouse with SQL queries, and build Power BI reports from the data warehouse. 
 
 **LET'S GO!!**
