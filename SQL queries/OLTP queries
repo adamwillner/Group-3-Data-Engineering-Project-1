@@ -1,1 +1,41 @@
+CREATE TABLE Customer 
+(
+	customer_id INT PRIMARY KEY,
+	customer_name NVARCHAR(50) NOT NULL,
+	address_id INT NOT NULL,
+	customer_type NVARCHAR(50) NOT NULL,
+
+	CONSTRAINT FK_Customer_Address
+        FOREIGN KEY (address_id) REFERENCES Address (address_id) 
+);
+
+CREATE TABLE Address 
+(
+    address_id INT PRIMARY KEY,
+    city_id INT NOT NULL,
+    address NVARCHAR(50) NOT NULL,
+    country NVARCHAR(50) NOT NULL,
+    city NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Location 
+(
+    location_id INT PRIMARY KEY,
+    location_type NVARCHAR(50) NOT NULL,
+    address_id INT NOT NULL,
+    location_name NVARCHAR(50) NULL,
+
+    CONSTRAINT FK_Location_Address
+        FOREIGN KEY (address_id) REFERENCES Address (address_id)
+); 
+
+CREATE TABLE Employee
+(
+    employee_id INT PRIMARY KEY,
+    location_id INT,
+    employee_name NVARCHAR(50),
+
+    CONSTRAINT FK_Employee_Location
+        FOREIGN KEY (location_id) REFERENCES Location (location_id)
+);
 
