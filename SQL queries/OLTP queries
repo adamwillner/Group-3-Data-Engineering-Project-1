@@ -1,7 +1,8 @@
-DROP DATABASE IF EXISTS RentalOperationalDB
-CREATE DATABASE RentalOperationalDB;
+DROP DATABASE IF EXISTS RentalOrderOperationalDB;
+GO
+CREATE DATABASE RentalOrderOperationalDB;
 
-USE RentalOperationalDB;
+USE RentalOrderOperationalDB;
 
 CREATE TABLE Category (
 	category_id INT PRIMARY KEY,
