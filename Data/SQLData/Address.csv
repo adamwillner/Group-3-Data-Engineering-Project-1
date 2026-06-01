@@ -1,0 +1,85 @@
+address_id,city_id,address,country,city
+1,1,100 Central Station,Finland,Helsinki
+2,1,101 Market Street,Finland,Helsinki
+3,1,102 Harbor Road,Finland,Helsinki
+4,1,103 University Ave,Finland,Helsinki
+5,2,100 Central Station,Finland,Tampere
+6,2,101 Market Street,Finland,Tampere
+7,2,102 Harbor Road,Finland,Tampere
+8,2,103 University Ave,Finland,Tampere
+9,3,100 Central Station,Sweden,Stockholm
+10,3,101 Market Street,Sweden,Stockholm
+11,3,102 Harbor Road,Sweden,Stockholm
+12,3,103 University Ave,Sweden,Stockholm
+13,4,100 Central Station,Sweden,Gothenburg
+14,4,101 Market Street,Sweden,Gothenburg
+15,4,102 Harbor Road,Sweden,Gothenburg
+16,4,103 University Ave,Sweden,Gothenburg
+17,5,100 Central Station,Denmark,Copenhagen
+18,5,101 Market Street,Denmark,Copenhagen
+19,5,102 Harbor Road,Denmark,Copenhagen
+20,5,103 University Ave,Denmark,Copenhagen
+21,6,100 Central Station,Denmark,Aarhus
+22,6,101 Market Street,Denmark,Aarhus
+23,6,102 Harbor Road,Denmark,Aarhus
+24,6,103 University Ave,Denmark,Aarhus
+25,5,4 Old Town Square,Denmark,Copenhagen
+26,1,76 Riverside Lane,Finland,Helsinki
+27,1,72 University Ave,Finland,Helsinki
+28,2,76 Old Town Square,Finland,Tampere
+29,6,44 Old Town Square,Denmark,Aarhus
+30,2,13 Airport Terminal,Finland,Tampere
+31,6,69 Market Street,Denmark,Aarhus
+32,4,74 University Ave,Sweden,Gothenburg
+33,2,11 University Ave,Finland,Tampere
+34,6,21 Airport Terminal,Denmark,Aarhus
+35,5,78 Harbor Road,Denmark,Copenhagen
+36,4,35 Main Boulevard,Sweden,Gothenburg
+37,1,5 Airport Terminal,Finland,Helsinki
+38,6,28 Tech Park,Denmark,Aarhus
+39,3,32 Main Boulevard,Sweden,Stockholm
+40,6,47 University Ave,Denmark,Aarhus
+41,1,15 Harbor Road,Finland,Helsinki
+42,2,49 City Mall,Finland,Tampere
+43,1,88 Main Boulevard,Finland,Helsinki
+44,3,59 Central Station,Sweden,Stockholm
+45,5,81 Old Town Square,Denmark,Copenhagen
+46,2,98 Harbor Road,Finland,Tampere
+47,2,63 Central Station,Finland,Tampere
+48,3,8 University Ave,Sweden,Stockholm
+49,1,17 Tech Park,Finland,Helsinki
+50,6,28 Main Boulevard,Denmark,Aarhus
+51,4,57 Main Boulevard,Sweden,Gothenburg
+52,2,3 City Mall,Finland,Tampere
+53,1,91 Central Station,Finland,Helsinki
+54,3,66 University Ave,Sweden,Stockholm
+55,5,93 City Mall,Denmark,Copenhagen
+56,4,25 Market Street,Sweden,Gothenburg
+57,4,60 Central Station,Sweden,Gothenburg
+58,4,14 University Ave,Sweden,Gothenburg
+59,2,24 Old Town Square,Finland,Tampere
+60,5,7 Main Boulevard,Denmark,Copenhagen
+61,2,63 Tech Park,Finland,Tampere
+62,1,49 Central Station,Finland,Helsinki
+63,4,90 Main Boulevard,Sweden,Gothenburg
+64,2,28 Central Station,Finland,Tampere
+65,6,8 Central Station,Denmark,Aarhus
+66,5,8 Main Boulevard,Denmark,Copenhagen
+67,5,87 University Ave,Denmark,Copenhagen
+68,5,80 Market Street,Denmark,Copenhagen
+69,6,34 University Ave,Denmark,Aarhus
+70,4,17 Old Town Square,Sweden,Gothenburg
+71,3,10 Main Boulevard,Sweden,Stockholm
+72,3,32 Airport Terminal,Sweden,Stockholm
+73,6,79 Main Boulevard,Denmark,Aarhus
+74,5,18 Old Town Square,Denmark,Copenhagen
+75,5,35 Old Town Square,Denmark,Copenhagen
+76,6,65 Tech Park,Denmark,Aarhus
+77,6,36 Central Station,Denmark,Aarhus
+78,3,95 Tech Park,Sweden,Stockholm
+79,1,10 Harbor Road,Finland,Helsinki
+80,5,56 Harbor Road,Denmark,Copenhagen
+81,2,27 University Ave,Finland,Tampere
+82,6,80 Harbor Road,Denmark,Aarhus
+83,2,4 Harbor Road,Finland,Tampere
+84,3,35 Harbor Road,Sweden,Stockholm
