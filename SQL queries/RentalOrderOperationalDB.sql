@@ -6,12 +6,12 @@ USE RentalOrderOperationalDB;
 
 CREATE TABLE Category (
 	category_id INT PRIMARY KEY,
-	description NVARCHAR(MAX)
+	description NVARCHAR(50)
 );
 
 CREATE TABLE SubCategory (
 	subcategory_id INT PRIMARY KEY,
-	subcat_description NVARCHAR(MAX),
+	subcat_description NVARCHAR(50),
 	category_id INT,
 	CONSTRAINT FK_Subcategory_Category FOREIGN KEY (category_id) REFERENCES Category(category_id)
 );
@@ -19,7 +19,7 @@ CREATE TABLE SubCategory (
 CREATE TABLE Item (
 	item_id INT PRIMARY KEY,
 	models_name NVARCHAR(50),
-	item_description NVARCHAR(MAX),
+	item_description NVARCHAR(50),
 	price DECIMAL(10,2),
 	discount FLOAT,
 	rental_days_allowed INT,
@@ -51,7 +51,6 @@ CREATE TABLE Customer
 CREATE TABLE Address 
 (
     address_id INT PRIMARY KEY,
-    city_id INT NOT NULL,
     address NVARCHAR(50) NOT NULL,
     country NVARCHAR(50) NOT NULL,
     city NVARCHAR(50) NOT NULL
