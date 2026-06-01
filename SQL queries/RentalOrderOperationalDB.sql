@@ -36,6 +36,13 @@ CREATE TABLE ItemInstance (
 	CONSTRAINT FK_ItemInstance_Item FOREIGN KEY (item_id) REFERENCES Item(item_id)
 );
 
+CREATE TABLE Address
+(
+    address_id INT PRIMARY KEY,
+    address NVARCHAR(50) NOT NULL,
+    country NVARCHAR(50) NOT NULL,
+    city NVARCHAR(50) NOT NULL
+);
 
 CREATE TABLE Customer 
 (
@@ -46,14 +53,6 @@ CREATE TABLE Customer
 
 	CONSTRAINT FK_Customer_Address
         FOREIGN KEY (address_id) REFERENCES Address (address_id) 
-);
-
-CREATE TABLE Address 
-(
-    address_id INT PRIMARY KEY,
-    address NVARCHAR(50) NOT NULL,
-    country NVARCHAR(50) NOT NULL,
-    city NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Location 
