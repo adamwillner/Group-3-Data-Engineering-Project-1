@@ -5,78 +5,78 @@ USE RentalOrderDW
 
 CREATE TABLE DimLocation
 (
-	location_id INT IDENTITY(1,1) PRIMARY KEY,
-	location_type NVARCHAR(50) NOT NULL,
-	address_id INT NOT NULL,
-	address NVARCHAR(50) NOT NULL,
-	city NVARCHAR(50) NOT NULL,
-	country NVARCHAR(50) NOT NULL,
-	location_name NVARCHAR(50) NULL,
-	alt_location_key INT
+	location_id 		INT 			IDENTITY(1,1) PRIMARY KEY,
+	location_type 		NVARCHAR(50) 	NOT NULL,
+	address_id 			INT 			NOT NULL,
+	address 			NVARCHAR(50) 	NOT NULL,
+	city 				NVARCHAR(50) 	NOT NULL,
+	country 			NVARCHAR(50) 	NOT NULL,
+	location_name 		NVARCHAR(50) 	NULL,
+	alt_location_key 	INT				NOT NULL
 );
 
 CREATE TABLE DimEmployee (
-	employee_id INT IDENTITY(1,1) PRIMARY KEY,
-	employee_name NVARCHAR(50),
-	location_id INT,
-	location_name NVARCHAR(50),
-	alt_employee_key INT
+	employee_id 		INT 			IDENTITY(1,1) PRIMARY KEY,
+	employee_name 		NVARCHAR(50),
+	location_id 		INT,
+	location_name 		NVARCHAR(50),
+	alt_employee_key 	INT				NOT NULL
 );
 
 CREATE TABLE DimDate (
-	date_id INT PRIMARY KEY,
-	date DATE,
-	day NVARCHAR(20),
-	month_number INT,
-	month_name NVARCHAR(20),
-	year INT
+	date_id 			INT 			PRIMARY KEY,
+	date 				DATE			NOT NULL,
+	day 				NVARCHAR(20)	NOT NULL,
+	month_number 		INT				NOT NULL,
+	month_name 			NVARCHAR(20)	NOT NULL,
+	year 				INT				NOT NULL
 );
 
 CREATE TABLE DimItemInstance (
-	instance_id INT IDENTITY(1,1) PRIMARY KEY,
-	item_state NVARCHAR(50),
-	distance_km FLOAT,
-	item_id INT,
-	model_name NVARCHAR(50),
-	item_status BIT,
-	subcategory_id INT,
-	subcat_description NVARCHAR(50),
-	category_id INT,
-	cat_description NVARCHAR(50),
-	alt_instance_key INT
+	instance_id 		INT 			IDENTITY(1,1) PRIMARY KEY,
+	item_state 			NVARCHAR(50),
+	distance_km 		FLOAT,
+	item_id 			INT,
+	model_name 			NVARCHAR(50),
+	item_status 		BIT,
+	subcategory_id 		INT,
+	subcat_description 	NVARCHAR(50),
+	category_id 		INT,
+	cat_description 	NVARCHAR(50),
+	alt_instance_key 	INT
 );
 
 CREATE TABLE DimCustomer (
-	customer_id INT IDENTITY(1,1) PRIMARY KEY,
-	customer_name NVARCHAR(50),
-	adress_id INT,
-	adress NVARCHAR(50),
-	city NVARCHAR(50),
-	country NVARCHAR(50),
-	customer_type NVARCHAR(50),
-	alt_customer_key INT
+	customer_id 		INT IDENTITY(1,1) PRIMARY KEY,
+	customer_name 		NVARCHAR(50),
+	adress_id 			INT,
+	adress 				NVARCHAR(50),
+	city 				NVARCHAR(50),
+	country 			NVARCHAR(50),
+	customer_type 		NVARCHAR(50),
+	alt_customer_key 	INT
 );
 
 CREATE TABLE FactRentalLineOrder
 (
-	rental_line_id INT IDENTITY(1,1) PRIMARY KEY,
-	rental_id INT NOT NULL,
-	rental_status NVARCHAR(50) NOT NULL,
-	price_paid DECIMAL(10,2) NOT NULL,
-	discount_offered FLOAT NOT NULL,
-	start_date_id INT NOT NULL,
-	return_date_id INT NULL,
-	end_date_id INT NOT NULL,
-	customer_id INT NOT NULL,
-	employee_id INT NOT NULL,
-	rental_location_id INT NOT NULL,
-	return_location_id INT NOT NULL,
-	instance_id INT NOT NULL,
-	start_time TIME NOT NULL,
-	return_time TIME NULL,
-	rental_count INT NOT NULL,
-	rental_amount DECIMAL(10,2) NOT NULL,
-	rental_duration_minutes INT NULL,
+	rental_line_id 				INT IDENTITY(1,1) PRIMARY KEY,
+	rental_id 					INT 		NOT NULL,
+	rental_status 				NVARCHAR(50) NOT NULL,
+	price_paid 					DECIMAL(10,2) NOT NULL,
+	discount_offered 			FLOAT NOT NULL,
+	start_date_id 				INT NOT NULL,
+	return_date_id 				INT NULL,
+	end_date_id 				INT NOT NULL,
+	customer_id 				INT NOT NULL,
+	employee_id 				INT NOT NULL,
+	rental_location_id 			INT NOT NULL,
+	return_location_id 			INT NOT NULL,
+	instance_id 				INT NOT NULL,
+	start_time 					TIME NOT NULL,
+	return_time 				TIME NULL,
+	rental_count 				INT NOT NULL,
+	rental_amount 				DECIMAL(10,2) NOT NULL,
+	rental_duration_minutes 	INT NULL,
 
 	CONSTRAINT FK_FactRentalLineOrder_DimDate_start
 		FOREIGN KEY (start_date_id) REFERENCES DimDate(date_id),
