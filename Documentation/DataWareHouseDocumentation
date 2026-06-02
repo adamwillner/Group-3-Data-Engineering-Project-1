@@ -1,0 +1,73 @@
+# Technical Documentation: RentalOrderDW
+
+This document describes the technical solution and important decisions for the `RentalOrderDW` data warehouse.
+
+## Architecture Diagram
+
+The data warehouse uses a star schema with one central fact table and five dimension tables.
+
+The architecture diagram is stored separately in the project documentation.
+
+## Database Schema
+
+Database name: `RentalOrderDW`
+
+| Table | Type | Primary Key | Description |
+|---|---|---|---|
+| `DimLocation` | Dimension | `location_id` | Stores rental and return location information. |
+| `DimEmployee` | Dimension | `employee_id` | Stores employee information. |
+| `DimDate` | Dimension | `date_id` | Stores date attributes used by rental dates. |
+| `DimItemInstance` | Dimension | `instance_id` | Stores item instance, item, subcategory, and category information. |
+| `DimCustomer` | Dimension | `customer_id` | Stores customer information. |
+| `FactRentalLineOrder` | Fact | `rental_line_id` | Stores rental line order transactions and measures. |
+
+## Fact Table Grain
+
+The grain of `FactRentalLineOrder` is:
+
+> One row per rental line order.
+
+Each fact row connects one rental line to:
+
+- One customer
+- One employee
+- One item instance
+- One rental location
+- One return location
+- One start date
+- One return date
+- One end date
+
+## Main Measures
+
+| Measure | Description |
+|---|---|
+| `price_paid` | Price paid for the rental line. |
+| `discount_offered` | Discount offered on the rental line. |
+| `rental_count` | Count of rental line orders. Usually `1` per row. |
+| `rental_amount` | Total rental amount for the rental line. |
+| `rental_duration_minutes` | Duration of the rental in minutes. |
+
+## Foreign Key Relationships
+
+| Fact Column | References |
+|---|---|
+| `start_date_id` | `DimDate(date_id)` |
+| `return_date_id` | `DimDate(date_id)` |
+| `end_date_id` | `DimDate(date_id)` |
+| `customer_id` | `DimCustomer(customer_id)` |
+| `employee_id` | `DimEmployee(employee_id)` |
+| `rental_location_id` | `DimLocation(location_id)` |
+| `return_location_id` | `DimLocation(location_id)` |
+| `instance_id` | `DimItemInstance(instance_id)` |
+
+## Important Technical Decisions and Changes
+
+- The warehouse uses a star schema to make reporting simpler and improve query performance.
+- `FactRentalLineOrder` is the central fact table because rental line orders contain the measurable business events.
+- Dimension tables are denormalized to reduce the number of joins needed in reports.
+- `DimItemInstance` includes item, subcategory, and category information in one dimension.
+- `DimDate` is reused as a role-playing dimension for start date, return date, and end date.
+- `DimLocation` is reused as a role-playing dimension for rental location and return location.
+- Calculated values such as `rental_amount` and `rental_duration_minutes` are stored in the fact table to simplify analysis.
+- The column names `adress_id` and `adress` in `DimCustomer` are known spelling inconsistencies and should be reviewed for possible renaming.
