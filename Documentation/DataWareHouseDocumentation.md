@@ -8,69 +8,6 @@ The data warehouse uses a star schema with one central fact table and five dimen
 
 <img width="719" height="438" alt="DatawarehouseModel" src="https://github.com/user-attachments/assets/217461fb-c8e8-4d9b-bc76-4dae67f36ca8" />
 
-## Database Schema
-Database Schema
-Table	Type	Primary Key	Description
-DimLocation	Dimension	location_id	Stores location information.
-DimEmployee	Dimension	employee_id	Stores employee information.
-DimDate	Dimension	date_id	Stores date information.
-DimItemInstance	Dimension	instance_id	Stores information about item instances, including subcategory and category.
-DimCustomer	Dimension	customer_id	Stores customer information.
-FactRentalLineOrder	Fact	rental_line_id	Stores rental line order transactions and measures.
-Table Descriptions
-DimLocation
-Column / Field	Description
-location_id	Primary key for the location dimension.
-Location information	Stores descriptive information about rental and return locations.
-Usage	Used to analyze rentals by rental location and return location.
-
-Role-playing usage:
-
-Fact Column	References	Description
-rental_location_id	DimLocation(location_id)	Identifies the location where the rental started.
-return_location_id	DimLocation(location_id)	Identifies the location where the rental was returned.
-DimEmployee
-Column / Field	Description
-employee_id	Primary key for the employee dimension.
-Employee information	Stores descriptive information about employees.
-Usage	Used to analyze rental line orders by employee.
-DimDate
-Column / Field	Description
-date_id	Primary key for the date dimension.
-Date information	Stores calendar-related information used for reporting and analysis.
-Usage	Used to analyze rentals by start date, return date, and end date.
-
-Role-playing usage:
-
-Fact Column	References	Description
-start_date_id	DimDate(date_id)	Identifies the date when the rental started.
-return_date_id	DimDate(date_id)	Identifies the date when the rental was returned.
-end_date_id	DimDate(date_id)	Identifies the planned or actual rental end date.
-DimItemInstance
-Column / Field	Description
-instance_id	Primary key for the item instance dimension.
-Item instance information	Stores information about specific item instances.
-Subcategory information	Stores item subcategory details.
-Category information	Stores item category details.
-Usage	Used to analyze rentals by item instance, subcategory, and category.
-
-Design note:
-
-Decision	Description
-Denormalized item structure	Item, subcategory, and category information are stored in one dimension table to reduce joins and simplify reporting.
-DimCustomer
-Column / Field	Description
-customer_id	Primary key for the customer dimension.
-Customer information	Stores descriptive information about customers.
-Usage	Used to analyze rental line orders by customer.
-FactRentalLineOrder
-Column / Field	Description
-rental_line_id	Primary key for the fact table.
-Rental line order transaction	Represents one rental line order transaction.
-Measures	Stores numeric values used for analysis, such as rental count, rental amount, and rental duration.
-Foreign keys	Connects each rental line order to related dimensions such as customer, employee, item instance, location, and date.
-Fact Table Grain
-
 The grain of FactRentalLineOrder is:
 
 One row per rental line order.
