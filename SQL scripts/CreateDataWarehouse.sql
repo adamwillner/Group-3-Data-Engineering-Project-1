@@ -70,7 +70,7 @@ CREATE TABLE FactRentalLineOrder
 	customer_id 				INT 			NOT NULL,
 	employee_id 				INT 			NOT NULL,
 	rental_location_id 			INT 			NOT NULL,
-	return_location_id 			INT 			NOT NULL,
+	return_location_id 			INT 			NULL,
 	instance_id 				INT 			NOT NULL,
 	start_time 					TIME 			NOT NULL,
 	return_time 				TIME 			NULL,
