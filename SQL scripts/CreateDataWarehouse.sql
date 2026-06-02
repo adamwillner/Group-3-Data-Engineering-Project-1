@@ -17,7 +17,7 @@ CREATE TABLE DimLocation
 
 CREATE TABLE DimEmployee (
 	employee_id 		INT 			IDENTITY(1,1) PRIMARY KEY,
-	employee_name 		NVARCHAR(50)	NOT NULL,
+	employee_name 		NVARCHAR(50)	NULL,
 	location_id 		INT				NOT NULL,
 	location_name 		NVARCHAR(50)	NULL,
 	alt_employee_key 	INT				NOT NULL
