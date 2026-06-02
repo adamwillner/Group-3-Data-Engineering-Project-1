@@ -71,7 +71,7 @@ The `DimDate` table stores reusable date attributes. It is used as a role-playin
 
 | Column | Data Type | Description | Operational Source Table | Operational Source Column |
 |---|---|---|---|---|
-| `date_id` | `INT` | Primary key for the date dimension. Usually formatted as a date key, for example `YYYYMMDD`. | Generated from rental date values | Generated date key |
+| `date_id` | `INT` | Primary key for the date dimension. Formatted as a date key, for example `YYYYMMDD`. | Generated from rental date values | Generated date key |
 | `date` | `DATE` | Full date value. | Generated from rental date values | Rental date fields |
 | `day` | `NVARCHAR(20)` | Day value or day name used for reporting. | Generated from `date` | Generated date attribute |
 | `month_number` | `INT` | Numeric month value. | Generated from `date` | Generated date attribute |
