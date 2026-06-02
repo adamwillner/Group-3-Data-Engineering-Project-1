@@ -76,7 +76,7 @@ CREATE TABLE FactRentalLineOrder
 	return_time TIME NULL,
 	rental_count INT NOT NULL,
 	rental_amount DECIMAL(10,2) NOT NULL,
-	rental_duration_minutes INT NOT NULL,
+	rental_duration_minutes INT NULL,
 
 	CONSTRAINT FK_FactRentalLineOrder_DimDate_start
 		FOREIGN KEY (start_date_id) REFERENCES DimDate(date_id),
