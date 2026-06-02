@@ -68,7 +68,7 @@ CREATE TABLE FactRentalLineOrder
 	return_date_id 				INT 			NULL,
 	end_date_id 				INT 			NOT NULL,
 	customer_id 				INT 			NOT NULL,
-	employee_id 				INT 			NOT NULL,
+	employee_id 				INT 			NULL,
 	rental_location_id 			INT 			NOT NULL,
 	return_location_id 			INT 			NULL,
 	instance_id 				INT 			NOT NULL,
