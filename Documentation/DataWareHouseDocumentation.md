@@ -42,10 +42,8 @@ Each fact row connects one rental line to:
 
 | Measure | Description |
 |---|---|
-| `price_paid` | Actual price paid for the rental line. |
-| `discount_offered` | Actual discount offered on the rental line. |
 | `rental_count` | For counting rental line orders. Always `1`. |
-| `rental_amount` | Total rental amount for the whole rental including many rental lines. |
+| `rental_amount` | Total amount cost for the whole rental including many rental lines. |
 | `rental_duration_minutes` | Duration of the rental in minutes. |
 
 ## Foreign Key Relationships
