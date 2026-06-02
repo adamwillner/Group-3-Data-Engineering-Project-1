@@ -38,7 +38,7 @@ CREATE TABLE DimItemInstance (
 	distance_km 		FLOAT			NOT NULL,
 	item_id 			INT				NOT NULL,
 	model_name 			NVARCHAR(50)	NOT NULL,
-	item_status 		BIT				NOT NULL,
+	item_status 		BIT				NULL,
 	subcategory_id 		INT				NOT NULL,
 	subcat_description 	NVARCHAR(50)	NOT NULL,
 	category_id 		INT				NOT NULL,
