@@ -20,7 +20,7 @@ Stores subcategories belonging to a category.
 |---|---|
 |subcategory_id	| Unique subcategory identifier
 subcat_description | Subcategory description, type of subcategory
-category_i | Reference to Category
+category_id | Reference to Category
 
 ### Item
 Stores rentable products.
