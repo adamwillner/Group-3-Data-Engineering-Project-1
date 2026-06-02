@@ -5,7 +5,7 @@ USE RentalOrderDW
 
 CREATE TABLE DimLocation
 (
-	location_id INT PRIMARY KEY,
+	location_id INT IDENTITY(1,1) PRIMARY KEY,
 	location_type NVARCHAR(50) NOT NULL,
 	address_id INT NOT NULL,
 	address NVARCHAR(50) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE DimLocation
 );
 
 CREATE TABLE DimEmployee (
-	employee_id INT PRIMARY KEY,
+	employee_id INT IDENTITY(1,1) PRIMARY KEY,
 	employee_name NVARCHAR(50),
 	location_id INT,
 	location_name NVARCHAR(50),
@@ -24,7 +24,7 @@ CREATE TABLE DimEmployee (
 );
 
 CREATE TABLE DimDate (
-	date_id INT PRIMARY KEY,
+	date_id INT IDENTITY(1,1) PRIMARY KEY,
 	date DATE,
 	day NVARCHAR(20),
 	month_number INT,
@@ -33,7 +33,7 @@ CREATE TABLE DimDate (
 );
 
 CREATE TABLE DimItemInstance (
-	instance_id INT PRIMARY KEY,
+	instance_id INT IDENTITY(1,1) PRIMARY KEY,
 	item_state NVARCHAR(50),
 	distance_km FLOAT,
 	item_id INT,
@@ -47,7 +47,7 @@ CREATE TABLE DimItemInstance (
 );
 
 CREATE TABLE DimCustomer (
-	customer_id INT PRIMARY KEY,
+	customer_id INT IDENTITY(1,1) PRIMARY KEY,
 	customer_name NVARCHAR(50),
 	adress_id INT,
 	adress NVARCHAR(50),
@@ -59,7 +59,7 @@ CREATE TABLE DimCustomer (
 
 CREATE TABLE FactRentalLineOrder
 (
-	rental_line_id INT PRIMARY KEY,
+	rental_line_id INT IDENTITY(1,1) PRIMARY KEY,
 	rental_id INT NOT NULL,
 	rental_status NVARCHAR(50) NOT NULL,
 	price_paid DECIMAL(10,2) NOT NULL,
