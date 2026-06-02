@@ -149,7 +149,7 @@ The `FactRentalLineOrder` table stores measurable rental line order events. The 
 | `return_location_id` | `INT` | Foreign key to `DimLocation`. Identifies where the rental was returned. | `Location` | `return_location_id` |
 | `instance_id` | `INT` | Foreign key to `DimItemInstance`. Identifies the rented item instance. | `ItemInstance` | `instance_id` |
 | `start_time` | `TIME` | Time when the rental started. | `Rental` | `start_time`  |
-| `end_time` | `TIME` | Time when the rental ended. | `Rental`  |`end_time` |
+| `return_time` | `TIME` | Time when the rental ended. | `Rental`  |`end_time` |
 | `rental_count` | `INT` | Measure used to count rental line orders. Always equals `1`. | Calculated in ETL | Static value |
 | `rental_amount` | `DECIMAL(10,2)` | Total rental amount used for analysis. | Calculated in ETL / rental source tables | Based on price and discount values |
 | `rental_duration_minutes` | `INT` | Duration of the rental in minutes. | Calculated in ETL | Based on start and end date/time values |
