@@ -14,10 +14,10 @@ Database name: `RentalOrderDW`
 
 | Table | Type | Primary Key | Description |
 |---|---|---|---|
-| `DimLocation` | Dimension | `location_id` | Stores rental and return location information. |
+| `DimLocation` | Dimension | `location_id` | Stores location information. |
 | `DimEmployee` | Dimension | `employee_id` | Stores employee information. |
-| `DimDate` | Dimension | `date_id` | Stores date attributes used by rental dates. |
-| `DimItemInstance` | Dimension | `instance_id` | Stores item instance, item, subcategory, and category information. |
+| `DimDate` | Dimension | `date_id` | Stores date information. |
+| `DimItemInstance` | Dimension | `instance_id` | Stores information about item instances e.g. subcategory, and category. |
 | `DimCustomer` | Dimension | `customer_id` | Stores customer information. |
 | `FactRentalLineOrder` | Fact | `rental_line_id` | Stores rental line order transactions and measures. |
 
@@ -42,10 +42,10 @@ Each fact row connects one rental line to:
 
 | Measure | Description |
 |---|---|
-| `price_paid` | Price paid for the rental line. |
-| `discount_offered` | Discount offered on the rental line. |
-| `rental_count` | Count of rental line orders. Usually `1` per row. |
-| `rental_amount` | Total rental amount for the rental line. |
+| `price_paid` | Actual price paid for the rental line. |
+| `discount_offered` | Actual discount offered on the rental line. |
+| `rental_count` | For counting rental line orders. Always `1`. |
+| `rental_amount` | Total rental amount for the whole rental including many rental lines. |
 | `rental_duration_minutes` | Duration of the rental in minutes. |
 
 ## Foreign Key Relationships
@@ -70,4 +70,3 @@ Each fact row connects one rental line to:
 - `DimDate` is reused as a role-playing dimension for start date, return date, and end date.
 - `DimLocation` is reused as a role-playing dimension for rental location and return location.
 - Calculated values such as `rental_amount` and `rental_duration_minutes` are stored in the fact table to simplify analysis.
-- The column names `adress_id` and `adress` in `DimCustomer` are known spelling inconsistencies and should be reviewed for possible renaming.
