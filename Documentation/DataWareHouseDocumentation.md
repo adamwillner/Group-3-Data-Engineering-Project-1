@@ -8,16 +8,120 @@ The data warehouse uses a star schema with one central fact table and five dimen
 
 <img width="719" height="438" alt="DatawarehouseModel" src="https://github.com/user-attachments/assets/217461fb-c8e8-4d9b-bc76-4dae67f36ca8" />
 
-Each fact row connects one rental line to the following dimensions:
+## Database Schema
 
-| Table | Type | Primary Key | Description |
+The following tables are included in the `RentalOrderDW` data warehouse.
+
+| Table | Type | Primary Key | Operational Source Table(s) | Description |
+|---|---|---|---|---|
+| `DimLocation` | Dimension | `location_id` | `Location` | Stores location information used for rental and return locations. |
+| `DimEmployee` | Dimension | `employee_id` | `Employee` | Stores employee information related to rental orders. |
+| `DimDate` | Dimension | `date_id` | Generated from date values in `RentalOrder` | Stores reusable date attributes for reporting and filtering. |
+| `DimItemInstance` | Dimension | `instance_id` | `ItemInstance`, `Item`, `Subcategory`, `Category` | Stores item instance details together with item, subcategory, and category information. |
+| `DimCustomer` | Dimension | `customer_id` | `Customer` | Stores customer information related to rental orders. |
+| `FactRentalLineOrder` | Fact | `rental_line_id` | `RentalLineOrder`, `RentalOrder` | Stores rental line order transactions, foreign keys to dimensions, and measurable values. |
+
+---
+
+## Dimension Table Descriptions
+
+### `DimLocation`
+
+The `DimLocation` table stores information about locations. It is used as a role-playing dimension because the same table is used for both rental locations and return locations.
+
+| Column | Description | Operational Source Table | Operational Source Column |
 |---|---|---|---|
-| `DimLocation` | Dimension | `location_id` | Stores location information. |
-| `DimEmployee` | Dimension | `employee_id` | Stores employee information. |
-| `DimDate` | Dimension | `date_id` | Stores date information. |
-| `DimItemInstance` | Dimension | `instance_id` | Stores information about item instances e.g. subcategory, and category. |
-| `DimCustomer` | Dimension | `customer_id` | Stores customer information. |
-| `FactRentalLineOrder` | Fact | `rental_line_id` | Stores rental line order transactions and measures. |
+| `location_id` | Unique identifier for the location. Primary key in the dimension table. | `Location` | `location_id` |
+| Location attributes | Descriptive information about the location, such as location name or address. | `Location` | Location-related columns |
+
+#### Used by fact table columns
+
+| Fact Column | References | Description |
+|---|---|---|
+| `rental_location_id` | `DimLocation(location_id)` | Identifies the location where the rental started. |
+| `return_location_id` | `DimLocation(location_id)` | Identifies the location where the rental was returned. |
+
+---
+
+### `DimEmployee`
+
+The `DimEmployee` table stores information about employees involved in rental orders.
+
+| Column | Description | Operational Source Table | Operational Source Column |
+|---|---|---|---|
+| `employee_id` | Unique identifier for the employee. Primary key in the dimension table. | `Employee` | `employee_id` |
+| Employee attributes | Descriptive information about the employee, such as name or role. | `Employee` | Employee-related columns |
+
+---
+
+### `DimDate`
+
+The `DimDate` table stores date attributes used for reporting and analysis. It is reused for multiple date roles in the fact table.
+
+| Column | Description | Operational Source Table | Operational Source Column |
+|---|---|---|---|
+| `date_id` | Unique identifier for the date. Primary key in the dimension table. Usually stored as a date key. | Generated from rental date fields | Generated value |
+| Date attributes | Descriptive date information such as day, month, year, weekday, or quarter. | Generated from rental date fields | Date values from rental-related columns |
+
+#### Used by fact table columns
+
+| Fact Column | References | Description |
+|---|---|---|
+| `start_date_id` | `DimDate(date_id)` | Identifies the rental start date. |
+| `return_date_id` | `DimDate(date_id)` | Identifies the date when the rental was returned. |
+| `end_date_id` | `DimDate(date_id)` | Identifies the planned or actual rental end date. |
+
+---
+
+### `DimItemInstance`
+
+The `DimItemInstance` table stores information about item instances and includes related item, subcategory, and category information in the same dimension table.
+
+This denormalized design makes reporting easier because users can analyze rentals by item instance, item, subcategory, or category without joining multiple dimension tables.
+
+| Column | Description | Operational Source Table | Operational Source Column |
+|---|---|---|---|
+| `instance_id` | Unique identifier for the item instance. Primary key in the dimension table. | `ItemInstance` | `instance_id` |
+| Item instance attributes | Descriptive information about the specific item instance. | `ItemInstance` | Item instance-related columns |
+| Item attributes | Information about the item connected to the item instance. | `Item` | Item-related columns |
+| Subcategory attributes | Information about the item subcategory. | `Subcategory` | Subcategory-related columns |
+| Category attributes | Information about the item category. | `Category` | Category-related columns |
+
+---
+
+### `DimCustomer`
+
+The `DimCustomer` table stores customer information used to analyze rental activity by customer.
+
+| Column | Description | Operational Source Table | Operational Source Column |
+|---|---|---|---|
+| `customer_id` | Unique identifier for the customer. Primary key in the dimension table. | `Customer` | `customer_id` |
+| Customer attributes | Descriptive information about the customer, such as name or contact details. | `Customer` | Customer-related columns |
+
+---
+
+## Fact Table Description
+
+### `FactRentalLineOrder`
+
+The `FactRentalLineOrder` table stores the measurable rental line order events. The grain of the table is one row per rental line order.
+
+| Column | Description | Operational Source Table | Operational Source Column |
+|---|---|---|---|
+| `rental_line_id` | Unique identifier for the rental line order. Primary key in the fact table. | `RentalLineOrder` | `rental_line_id` |
+| `customer_id` | Foreign key to `DimCustomer`. Identifies the customer connected to the rental order. | `RentalOrder` | `customer_id` |
+| `employee_id` | Foreign key to `DimEmployee`. Identifies the employee connected to the rental order. | `RentalOrder` | `employee_id` |
+| `instance_id` | Foreign key to `DimItemInstance`. Identifies the rented item instance. | `RentalLineOrder` | `instance_id` |
+| `rental_location_id` | Foreign key to `DimLocation`. Identifies where the rental started. | `RentalOrder` | `rental_location_id` |
+| `return_location_id` | Foreign key to `DimLocation`. Identifies where the rental was returned. | `RentalOrder` | `return_location_id` |
+| `start_date_id` | Foreign key to `DimDate`. Identifies the rental start date. | `RentalOrder` | Start date column |
+| `return_date_id` | Foreign key to `DimDate`. Identifies the rental return date. | `RentalOrder` | Return date column |
+| `end_date_id` | Foreign key to `DimDate`. Identifies the rental end date. | `RentalOrder` | End date column |
+| `rental_count` | Measure used to count rental line orders. Always has the value `1`. | Calculated in ETL | Static calculated value |
+| `rental_amount` | Measure representing the total rental amount. | `RentalOrder` / `RentalLineOrder` | Amount-related columns |
+| `rental_duration_minutes` | Measure representing the duration of the rental in minutes. | Calculated in ETL | Based on rental start and return/end date values |
+
+---
 
 ## Fact Table Grain
 
