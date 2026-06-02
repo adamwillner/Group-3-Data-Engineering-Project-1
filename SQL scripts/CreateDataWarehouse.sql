@@ -65,7 +65,7 @@ CREATE TABLE FactRentalLineOrder
 	price_paid DECIMAL(10,2) NOT NULL,
 	discount_offered FLOAT NOT NULL,
 	start_date_id INT NOT NULL,
-	return_date_id INT NOT NULL,
+	return_date_id INT NULL,
 	end_date_id INT NOT NULL,
 	customer_id INT NOT NULL,
 	employee_id INT NOT NULL,
