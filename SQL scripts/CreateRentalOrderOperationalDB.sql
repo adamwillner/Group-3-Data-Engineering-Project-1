@@ -5,19 +5,19 @@ CREATE DATABASE RentalOrderOperationalDB;
 USE RentalOrderOperationalDB;
 
 CREATE TABLE Category (
-	category_id INT PRIMARY KEY,
+	category_id INT IDENTITY(1,1) PRIMARY KEY,
 	description NVARCHAR(50)
 );
 
 CREATE TABLE SubCategory (
-	subcategory_id INT PRIMARY KEY,
+	subcategory_id INT IDENTITY(1,1) PRIMARY KEY,
 	subcat_description NVARCHAR(50),
 	category_id INT,
 	CONSTRAINT FK_Subcategory_Category FOREIGN KEY (category_id) REFERENCES Category(category_id)
 );
 
 CREATE TABLE Item (
-	item_id INT PRIMARY KEY,
+	item_id INT IDENTITY(1,1) PRIMARY KEY,
 	models_name NVARCHAR(50),
 	item_description NVARCHAR(50),
 	price DECIMAL(10,2),
@@ -28,7 +28,7 @@ CREATE TABLE Item (
 );
 
 CREATE TABLE ItemInstance (
-	instance_id INT PRIMARY KEY,
+	instance_id INT IDENTITY(1,1) PRIMARY KEY,
 	item_state NVARCHAR(50),
 	distance_km FLOAT,
 	item_status BIT,
@@ -38,7 +38,7 @@ CREATE TABLE ItemInstance (
 
 CREATE TABLE Address
 (
-    address_id INT PRIMARY KEY,
+    address_id INT IDENTITY(1,1) PRIMARY KEY,
     address NVARCHAR(50) NOT NULL,
     country NVARCHAR(50) NOT NULL,
     city NVARCHAR(50) NOT NULL
@@ -46,7 +46,7 @@ CREATE TABLE Address
 
 CREATE TABLE Customer 
 (
-	customer_id INT PRIMARY KEY,
+	customer_id INT IDENTITY(1,1) PRIMARY KEY,
 	customer_name NVARCHAR(50) NOT NULL,
 	address_id INT NOT NULL,
 	customer_type NVARCHAR(50) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE Customer
 
 CREATE TABLE Location 
 (
-    location_id INT PRIMARY KEY,
+    location_id INT IDENTITY(1,1) PRIMARY KEY,
     location_type NVARCHAR(50) NOT NULL,
     address_id INT NOT NULL,
     location_name NVARCHAR(50) NULL,
@@ -68,7 +68,7 @@ CREATE TABLE Location
 
 CREATE TABLE Employee
 (
-    employee_id INT PRIMARY KEY,
+    employee_id INT IDENTITY(1,1) PRIMARY KEY,
     location_id INT,
     employee_name NVARCHAR(50),
 
@@ -77,7 +77,7 @@ CREATE TABLE Employee
 );
 
 CREATE TABLE Rental (
-	rental_id INT PRIMARY KEY,
+	rental_id INT IDENTITY(1,1) PRIMARY KEY,
 	start_date_time DATETIME,
 	return_date_time DATETIME NULL,
 	end_date_time DATETIME,
@@ -93,7 +93,7 @@ CREATE TABLE Rental (
 );
 
 CREATE TABLE RentalLineOrder (
-	rental_line_id INT PRIMARY KEY,
+	rental_line_id INT IDENTITY(1,1) PRIMARY KEY,
 	price_paid DECIMAL(10,2),
 	discount_offered FLOAT,
 	instance_id INT,
