@@ -11,7 +11,8 @@ CREATE TABLE DimLocation
 	address NVARCHAR(50) NOT NULL,
 	city NVARCHAR(50) NOT NULL,
 	country NVARCHAR(50) NOT NULL,
-	location_name NVARCHAR(50) NULL
+	location_name NVARCHAR(50) NULL,
+	alt_location_key INT
 );
 
 CREATE TABLE DimEmployee (
