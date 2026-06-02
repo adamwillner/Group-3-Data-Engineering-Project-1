@@ -101,6 +101,5 @@ CREATE TABLE FactRentalLineOrder
 
 	CONSTRAINT FK_FactRentalLineOrder_DimItemInstance
 		FOREIGN KEY (instance_id) REFERENCES DimItemInstance(instance_id)
-
 )
 
