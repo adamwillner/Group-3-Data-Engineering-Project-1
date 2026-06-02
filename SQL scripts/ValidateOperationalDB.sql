@@ -81,4 +81,3 @@ JOIN SubCategory sc
 JOIN Category cat 
     ON sc.category_id = cat.category_id
 ORDER BY r.start_date_time;
-	FROM Address
