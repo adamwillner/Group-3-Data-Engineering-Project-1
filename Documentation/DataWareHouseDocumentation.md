@@ -37,8 +37,8 @@ The `DimLocation` table stores information about locations. It is used as a role
 | `location_type` | `NVARCHAR(50)` | Describes the type of location. | `Location` | `location_type` |
 | `address_id` | `INT` | Identifier for the address connected to the location. | `Address` | `address_id` |
 | `address` | `NVARCHAR(50)` | Street address of the location. | `Address` | `address` |
-| `city` | `NVARCHAR(50)` | City where the location is located. | `City` | `city` |
-| `country` | `NVARCHAR(50)` | Country where the location is located. | `Country` | `country` |
+| `city` | `NVARCHAR(50)` | City where the location is located. | `Address` | `city` |
+| `country` | `NVARCHAR(50)` | Country where the location is located. | `Address` | `country` |
 | `location_name` | `NVARCHAR(50)` | Name of the rental or return location. | `Location` | `location_name` |
 | `alt_location_key` | `INT` | Alternative key from the operational database, used to trace the dimension row back to the source system. | `Location` | Original location key |
 
@@ -58,7 +58,7 @@ The `DimEmployee` table stores information about employees and the location conn
 | Column | Data Type | Description | Operational Source Table | Operational Source Column |
 |---|---|---|---|---|
 | `employee_id` | `INT IDENTITY(1,1)` | Surrogate primary key for the employee dimension. | Generated in data warehouse | Generated key |
-| `employee_name` | `NVARCHAR(50)` | Name of the employee. | `Employee` | Employee name column |
+| `employee_name` | `NVARCHAR(50)` | Name of the employee. | `Employee` | `employee_name` |
 | `location_id` | `INT` | Identifier for the location connected to the employee. | `Location` | `location_id` |
 | `location_name` | `NVARCHAR(50)` | Name of the employee's location. | `Location` | `location_name` |
 | `alt_employee_key` | `INT` | Alternative key from the operational database, used to trace the dimension row back to the source system. | `Employee` | Original employee key |
@@ -99,7 +99,7 @@ The `DimItemInstance` table stores item instance information together with item,
 | `distance_km` | `FLOAT` | Distance value connected to the item instance. | `ItemInstance` | `distance_km` |
 | `item_id` | `INT` | Identifier for the item connected to the item instance. | `Item` | `item_id` |
 | `model_name` | `NVARCHAR(50)` | Model name of the item. | `Item` | `model_name` |
-| `item_status` | `BIT` | Status of the item, for example active or inactive. | `Item` | `item_status` |
+| `item_status` | `BIT` | Status of the item, for example active or inactive. | `ItemInstance` | `item_status` |
 | `subcategory_id` | `INT` | Identifier for the subcategory connected to the item. | `Subcategory` | `subcategory_id` |
 | `subcat_description` | `NVARCHAR(50)` | Description of the item subcategory. | `Subcategory` | `subcat_description` |
 | `category_id` | `INT` | Identifier for the category connected to the subcategory. | `Category` | `category_id` |
@@ -117,11 +117,11 @@ The `DimCustomer` table stores customer information, including address and custo
 | Column | Data Type | Description | Operational Source Table | Operational Source Column |
 |---|---|---|---|---|
 | `customer_id` | `INT IDENTITY(1,1)` | Surrogate primary key for the customer dimension. | Generated in data warehouse | Generated key |
-| `customer_name` | `NVARCHAR(50)` | Name of the customer. | `Customer` | Customer name column |
+| `customer_name` | `NVARCHAR(50)` | Name of the customer. | `Customer` | `name` |
 | `adress_id` | `INT` | Identifier for the customer's address. | `Address` | `address_id` |
 | `adress` | `NVARCHAR(50)` | Street address of the customer. | `Address` | `address` |
-| `city` | `NVARCHAR(50)` | City where the customer is located. | `City` | `city` |
-| `country` | `NVARCHAR(50)` | Country where the customer is located. | `Country` | `country` |
+| `city` | `NVARCHAR(50)` | City where the customer is located. | `Address` | `city` |
+| `country` | `NVARCHAR(50)` | Country where the customer is located. | `Address` | `country` |
 | `customer_type` | `NVARCHAR(50)` | Type or classification of the customer. | `CustomerType` | `customer_type` |
 | `alt_customer_key` | `INT` | Alternative key from the operational database, used to trace the dimension row back to the source system. | `Customer` | Original customer key |
 
@@ -136,20 +136,20 @@ The `FactRentalLineOrder` table stores measurable rental line order events. The 
 | Column | Data Type | Description | Operational Source Table | Operational Source Column |
 |---|---|---|---|---|
 | `rental_line_id` | `INT IDENTITY(1,1)` | Surrogate primary key for the fact table. | Generated in data warehouse | Generated key |
-| `rental_id` | `INT` | Identifier for the rental order connected to the rental line. | `RentalOrder` | `rental_id` |
-| `rental_status` | `NVARCHAR(50)` | Status of the rental order. | `RentalOrder` | `rental_status` |
+| `rental_id` | `INT` | Identifier for the rental order connected to the rental line. | `Rental` | `rental_id` |
+| `rental_status` | `NVARCHAR(50)` | Status of the rental order. | `Rental` | `rental_status` |
 | `price_paid` | `DECIMAL(10,2)` | Price paid for the rental line. | `RentalLineOrder` | `price_paid` |
 | `discount_offered` | `FLOAT` | Discount offered for the rental line. | `RentalLineOrder` | `discount_offered` |
-| `start_date_id` | `INT` | Foreign key to `DimDate`. Identifies the rental start date. | `RentalOrder` | Start date column |
-| `return_date_id` | `INT` | Foreign key to `DimDate`. Identifies the rental return date. | `RentalOrder` | Return date column |
-| `end_date_id` | `INT` | Foreign key to `DimDate`. Identifies the rental end date. | `RentalOrder` | End date column |
-| `customer_id` | `INT` | Foreign key to `DimCustomer`. Identifies the customer connected to the rental. | `RentalOrder` | `customer_id` |
-| `employee_id` | `INT` | Foreign key to `DimEmployee`. Identifies the employee connected to the rental. | `RentalOrder` | `employee_id` |
-| `rental_location_id` | `INT` | Foreign key to `DimLocation`. Identifies where the rental started. | `RentalOrder` | `rental_location_id` |
-| `return_location_id` | `INT` | Foreign key to `DimLocation`. Identifies where the rental was returned. | `RentalOrder` | `return_location_id` |
-| `instance_id` | `INT` | Foreign key to `DimItemInstance`. Identifies the rented item instance. | `RentalLineOrder` | `instance_id` |
-| `start_time` | `TIME` | Time when the rental started. | `RentalOrder` | Start time column |
-| `end_time` | `TIME` | Time when the rental ended. | `RentalOrder` | End time column |
+| `start_date_id` | `INT` | Foreign key to `DimDate`. Identifies the rental start date. | `Rental` | `start_date_id` |
+| `return_date_id` | `INT` | Foreign key to `DimDate`. Identifies the rental return date. | `Rental` | `return_date_id`  |
+| `end_date_id` | `INT` | Foreign key to `DimDate`. Identifies the rental end date. | `Rental` |`end_date_id` |
+| `customer_id` | `INT` | Foreign key to `DimCustomer`. Identifies the customer connected to the rental. | `Customer` | `customer_id` |
+| `employee_id` | `INT` | Foreign key to `DimEmployee`. Identifies the employee connected to the rental. | `Employee` | `employee_id` |
+| `rental_location_id` | `INT` | Foreign key to `DimLocation`. Identifies where the rental started. | `Location` | `rental_location_id` |
+| `return_location_id` | `INT` | Foreign key to `DimLocation`. Identifies where the rental was returned. | `Location` | `return_location_id` |
+| `instance_id` | `INT` | Foreign key to `DimItemInstance`. Identifies the rented item instance. | `ItemInstance` | `instance_id` |
+| `start_time` | `TIME` | Time when the rental started. | `Rental` | `start_time`  |
+| `end_time` | `TIME` | Time when the rental ended. | `Rental`  |`end_time` |
 | `rental_count` | `INT` | Measure used to count rental line orders. Always equals `1`. | Calculated in ETL | Static value |
 | `rental_amount` | `DECIMAL(10,2)` | Total rental amount used for analysis. | Calculated in ETL / rental source tables | Based on price and discount values |
 | `rental_duration_minutes` | `INT` | Duration of the rental in minutes. | Calculated in ETL | Based on start and end date/time values |
