@@ -17,9 +17,9 @@ CREATE TABLE DimLocation
 
 CREATE TABLE DimEmployee (
 	employee_id 		INT 			IDENTITY(1,1) PRIMARY KEY,
-	employee_name 		NVARCHAR(50),
-	location_id 		INT,
-	location_name 		NVARCHAR(50),
+	employee_name 		NVARCHAR(50),	NOT NULL
+	location_id 		INT,			NOT NULL
+	location_name 		NVARCHAR(50),	NULL
 	alt_employee_key 	INT				NOT NULL
 );
 
@@ -34,35 +34,35 @@ CREATE TABLE DimDate (
 
 CREATE TABLE DimItemInstance (
 	instance_id 		INT 			IDENTITY(1,1) PRIMARY KEY,
-	item_state 			NVARCHAR(50),
-	distance_km 		FLOAT,
-	item_id 			INT,
-	model_name 			NVARCHAR(50),
-	item_status 		BIT,
-	subcategory_id 		INT,
-	subcat_description 	NVARCHAR(50),
-	category_id 		INT,
-	cat_description 	NVARCHAR(50),
-	alt_instance_key 	INT
+	item_state 			NVARCHAR(50),	NOT NULL
+	distance_km 		FLOAT,			NOT NULL
+	item_id 			INT,			NOT NULL
+	model_name 			NVARCHAR(50),	NOT NULL
+	item_status 		BIT,			NOT NULL
+	subcategory_id 		INT,			NOT NULL
+	subcat_description 	NVARCHAR(50),	NOT NULL
+	category_id 		INT,			NOT NULL
+	cat_description 	NVARCHAR(50),	NOT NULL
+	alt_instance_key 	INT				NOT NULL
 );
 
 CREATE TABLE DimCustomer (
 	customer_id 		INT IDENTITY(1,1) PRIMARY KEY,
-	customer_name 		NVARCHAR(50),
-	adress_id 			INT,
-	adress 				NVARCHAR(50),
-	city 				NVARCHAR(50),
-	country 			NVARCHAR(50),
-	customer_type 		NVARCHAR(50),
-	alt_customer_key 	INT
+	customer_name 		NVARCHAR(50),	NOT NULL
+	adress_id 			INT,			NOT NULL
+	adress 				NVARCHAR(50),	NOT NULL
+	city 				NVARCHAR(50),	NOT NULL
+	country 			NVARCHAR(50),	NOT NULL
+	customer_type 		NVARCHAR(50),	NOT NULL
+	alt_customer_key 	INT				NOT NULL
 );
 
 CREATE TABLE FactRentalLineOrder
 (
 	rental_line_id 				INT IDENTITY(1,1) PRIMARY KEY,
-	rental_id 					INT 		NOT NULL,
-	rental_status 				NVARCHAR(50) NOT NULL,
-	price_paid 					DECIMAL(10,2) NOT NULL,
+	rental_id 					INT 			NOT NULL,
+	rental_status 				NVARCHAR(50)	 NOT NULL,
+	price_paid 					DECIMAL(10,2) 	NOT NULL,
 	discount_offered 			FLOAT NOT NULL,
 	start_date_id 				INT NOT NULL,
 	return_date_id 				INT NULL,
