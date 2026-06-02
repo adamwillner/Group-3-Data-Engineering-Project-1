@@ -6,7 +6,7 @@ This document describes the technical solution and important decisions for the `
 
 The data warehouse uses a star schema with one central fact table and five dimension tables.
 
-The architecture diagram is stored separately in the project documentation.
+<img width="719" height="438" alt="DatawarehouseModel" src="https://github.com/user-attachments/assets/217461fb-c8e8-4d9b-bc76-4dae67f36ca8" />
 
 ## Database Schema
 
