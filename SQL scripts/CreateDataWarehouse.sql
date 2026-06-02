@@ -24,7 +24,7 @@ CREATE TABLE DimEmployee (
 );
 
 CREATE TABLE DimDate (
-	date_id INT IDENTITY(1,1) PRIMARY KEY,
+	date_id INT PRIMARY KEY,
 	date DATE,
 	day NVARCHAR(20),
 	month_number INT,
