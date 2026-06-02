@@ -6,33 +6,33 @@ USE RentalOrderOperationalDB;
 
 CREATE TABLE Category (
 	category_id INT IDENTITY(1,1) PRIMARY KEY,
-	description NVARCHAR(50)
+	description NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE SubCategory (
 	subcategory_id INT IDENTITY(1,1) PRIMARY KEY,
-	subcat_description NVARCHAR(50),
-	category_id INT,
+	subcat_description NVARCHAR(50) NOT NULL,
+	category_id INT NOT NULL,
 	CONSTRAINT FK_Subcategory_Category FOREIGN KEY (category_id) REFERENCES Category(category_id)
 );
 
 CREATE TABLE Item (
 	item_id INT IDENTITY(1,1) PRIMARY KEY,
-	models_name NVARCHAR(50),
-	item_description NVARCHAR(50),
-	price DECIMAL(10,2),
-	discount FLOAT,
-	rental_days_allowed INT,
-	subcategory_id INT,
+	models_name NVARCHAR(50) NOT NULL,
+	item_description NVARCHAR(50) NOT NULL,
+	price DECIMAL(10,2) NOT NULL,
+	discount FLOAT NOT NULL,
+	rental_days_allowed INT NOT NULL,
+	subcategory_id INT NOT NULL,
 	CONSTRAINT FK_Item_Subcategory FOREIGN KEY (subcategory_id) REFERENCES Subcategory(subcategory_id)
 );
 
 CREATE TABLE ItemInstance (
 	instance_id INT IDENTITY(1,1) PRIMARY KEY,
-	item_state NVARCHAR(50),
-	distance_km FLOAT,
-	item_status BIT,
-	item_id INT,
+	item_state NVARCHAR(50) NOT NULL,
+	distance_km FLOAT NOT NULL,
+	item_status BIT NOT NULL,
+	item_id INT NOT NULL,
 	CONSTRAINT FK_ItemInstance_Item FOREIGN KEY (item_id) REFERENCES Item(item_id)
 );
 
@@ -69,8 +69,8 @@ CREATE TABLE Location
 CREATE TABLE Employee
 (
     employee_id INT IDENTITY(1,1) PRIMARY KEY,
-    location_id INT,
-    employee_name NVARCHAR(50),
+    location_id INT NOT NULL,
+    employee_name NVARCHAR(50) NOT NULL,
 
     CONSTRAINT FK_Employee_Location
         FOREIGN KEY (location_id) REFERENCES Location (location_id)
@@ -78,14 +78,14 @@ CREATE TABLE Employee
 
 CREATE TABLE Rental (
 	rental_id INT IDENTITY(1,1) PRIMARY KEY,
-	start_date_time DATETIME,
+	start_date_time DATETIME NOT NULL,
 	return_date_time DATETIME NULL,
-	end_date_time DATETIME,
-	rental_status NVARCHAR(50),
-	customer_id INT,
+	end_date_time DATETIME NOT NULL,
+	rental_status NVARCHAR(50) NOT NULL,
+	customer_id INT NOT NULL,
 	employee_id INT NULL,
-	rental_location_id INT,
-	return_location_id INT,
+	rental_location_id INT NOT NULL,
+	return_location_id INT NOT NULL,
 	CONSTRAINT FK_Rental_Customer FOREIGN KEY (customer_id) REFERENCES Customer (customer_id),
 	CONSTRAINT FK_Rental_Employee FOREIGN KEY (employee_id) REFERENCES Employee (employee_id),
 	CONSTRAINT FK_Rental_Location_Rental FOREIGN KEY (rental_location_id) REFERENCES Location (location_id),
@@ -94,10 +94,10 @@ CREATE TABLE Rental (
 
 CREATE TABLE RentalLineOrder (
 	rental_line_id INT IDENTITY(1,1) PRIMARY KEY,
-	price_paid DECIMAL(10,2),
-	discount_offered FLOAT,
-	instance_id INT,
-	rental_id INT,
+	price_paid DECIMAL(10,2) NOT NULL,
+	discount_offered FLOAT NOT NULL,
+	instance_id INT NOT NULL,
+	rental_id INT NOT NULL,
 	CONSTRAINT FK_RentalLineOrder_ItemInstance FOREIGN KEY (instance_id) REFERENCES ItemInstance(instance_id),
 	CONSTRAINT FK_RentalLineOrder_Rental FOREIGN KEY(rental_id) REFERENCES Rental(rental_id)
 );
