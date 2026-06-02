@@ -73,7 +73,7 @@ CREATE TABLE FactRentalLineOrder
 	return_location_id INT NOT NULL,
 	instance_id INT NOT NULL,
 	start_time TIME NOT NULL,
-	end_time TIME NOT NULL,
+	return_time TIME NULL,
 	rental_count INT NOT NULL,
 	rental_amount DECIMAL(10,2) NOT NULL,
 	rental_duration_minutes INT NOT NULL,
