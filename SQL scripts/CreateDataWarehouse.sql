@@ -11,15 +11,15 @@ CREATE TABLE DimLocation
 	address 			NVARCHAR(50) 	NOT NULL,
 	city 				NVARCHAR(50) 	NOT NULL,
 	country 			NVARCHAR(50) 	NOT NULL,
-	location_name 		NVARCHAR(50) 	NULL,
+	location_name 		NVARCHAR(50) 	NOT NULL,
 	alt_location_key 	INT				NOT NULL
 );
 
 CREATE TABLE DimEmployee (
 	employee_id 		INT 			IDENTITY(1,1) PRIMARY KEY,
-	employee_name 		NVARCHAR(50)	NULL,
+	employee_name 		NVARCHAR(50)	NOT NULL,
 	location_id 		INT				NOT NULL,
-	location_name 		NVARCHAR(50)	NULL,
+	location_name 		NVARCHAR(50)	NOT NULL,
 	alt_employee_key 	INT				NOT NULL
 );
 
