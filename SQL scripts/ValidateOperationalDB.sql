@@ -147,7 +147,7 @@ JOIN Category cat
     ON sc.category_id = cat.category_id
 ORDER BY r.start_date_time;
 
----checks that 
+---checks that one instance cannot be rented and returned in many counties
 SELECT
     rlo.instance_id,
     COUNT(DISTINCT a.country) AS country_count
