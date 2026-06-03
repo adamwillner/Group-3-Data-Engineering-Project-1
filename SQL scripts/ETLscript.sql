@@ -2,8 +2,8 @@
 
 INSERT INTO RentalOrderDW.dbo.DimCustomer (
     customer_name,
-    adress_id,
-    adress,
+    address_id,
+    address,
     city,
     country,
     customer_type,
