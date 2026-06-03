@@ -1,10 +1,10 @@
-# Rental Order Data Warehouse ELT Process Documentation
+# Rental Order Data Warehouse ETL Process Documentation
 
 ## 1. Overview
 
 ### Purpose
 
-The purpose of this ELT process is to populate the **RentalOrderDW** data warehouse from the **RentalOrderOperationalDB** operational database. The process supports analytical reporting by organizing transactional rental data into a star schema consisting of dimension and fact tables.
+The purpose of this ETL process is to populate the **RentalOrderDW** data warehouse from the **RentalOrderOperationalDB** operational database. The process supports analytical reporting by organizing transactional rental data into a star schema consisting of dimension and fact tables.
 
 ### Source System
 
@@ -18,7 +18,7 @@ The purpose of this ELT process is to populate the **RentalOrderDW** data wareho
 
 ---
 
-## 2. ELT Architecture
+## 2. ETL Architecture
 
 ### Source Tables
 
@@ -72,17 +72,6 @@ Stores customer attributes for analytical reporting.
 | `LEFT JOIN`               | Connects customer records to address data  |
 | Business Key Preservation | `customer_id` stored as `alt_customer_key` |
 
-#### Target Columns
-
-| Column           | Source                 |
-| ---------------- | ---------------------- |
-| customer_name    | Customer.customer_name |
-| address_id        | Address.address_id     |
-| address           | Address.address        |
-| city             | Address.city           |
-| country          | Address.country        |
-| customer_type    | Customer.customer_type |
-| alt_customer_key | Customer.customer_id   |
 
 ---
 
@@ -101,11 +90,11 @@ Stores employee information.
 
 A placeholder employee record is inserted:
 
-| Value                         | Meaning                                    |
+| Transformation                | Description                                |
 | ----------------------------- | ------------------------------------------ |
-| employee_id = -1              | No employee assigned                       |
-| employee_name = "No Employee" | Default employee if none exists            |
-| location_id = -1              | Unknown location if location doesn't exist |
+| COALESCE + employee_id        | If NULL, employee_id = -1                  |
+| COALESCE + employee_name      | If NULL, default employee = 'Missing'      |
+| COALESCE + location_id        | If NULL, location_id = 'Missing'           |
 
 This ensures referential integrity when rentals are not associated with an employee.
 
@@ -127,7 +116,7 @@ Stores rental and return location information.
 #### Transformations
 
 * Address enrichment through join.
-* Replaces NULL values with "Missing".
+* COALESCE replaces NULL values with "Missing".
 * Location business key stored as `alt_location_key`.
 
 ---
@@ -150,8 +139,8 @@ Stores information about rental items and their categorization.
 | Transformation     | Description                                     |
 | ------------------ | ----------------------------------------------- |
 | Hierarchical Joins | Item → SubCategory → Category                   |
-| `COALESCE()`       | Replaces NULL values with "Missing"             |
-| Distance Defaults  | Missing distance values (km) replaced with `-1` |
+| COALESCE           | Replaces NULL values with "Missing"             |
+| COALESCE km        | If NULL, distance values (km) = -1              |
 
 `instance_id` is preserved in `alt_instance_key`.
 
@@ -192,12 +181,6 @@ A recursive CTE generates one row per date until the specified end date is reach
 #### Purpose
 
 Stores rental transaction facts and measures for analysis.
-
-#### Grain
-
-**One record per rental line item.**
-
-Each row represents a specific rented item instance within a rental transaction.
 
 #### Source Tables
 
@@ -278,7 +261,7 @@ Dates are converted into surrogate date keys:
 
 ## 6. Business Value
 
-This ELT process enables:
+This ETL process enables:
 
 * Rental revenue analysis
 * Rental duration analysis
