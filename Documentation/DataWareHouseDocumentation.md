@@ -6,7 +6,7 @@ This document describes the technical solution and important decisions for the `
 
 The data warehouse uses a star schema with one central fact table and five dimension tables.
 
-<img width="719" height="438" alt="DatawarehouseModel" src="https://github.com/user-attachments/assets/217461fb-c8e8-4d9b-bc76-4dae67f36ca8" />
+<img width="1060" height="786" alt="DataWarehouseERD" src="https://github.com/user-attachments/assets/70fcec01-74b4-4537-89df-9962c3ebd690" />
 
 ## Database Schema
 
