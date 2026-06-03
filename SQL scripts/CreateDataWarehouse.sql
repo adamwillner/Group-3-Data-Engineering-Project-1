@@ -49,8 +49,8 @@ CREATE TABLE DimItemInstance (
 CREATE TABLE DimCustomer (
 	customer_id 		INT IDENTITY(1,1) PRIMARY KEY,
 	customer_name 		NVARCHAR(50)	NOT NULL,
-	adress_id 			INT				NOT NULL,
-	adress 				NVARCHAR(50)	NOT NULL,
+	address_id 			INT				NOT NULL,
+	address 			NVARCHAR(50)	NOT NULL,
 	city 				NVARCHAR(50)	NOT NULL,
 	country 			NVARCHAR(50)	NOT NULL,
 	customer_type 		NVARCHAR(50)	NOT NULL,
