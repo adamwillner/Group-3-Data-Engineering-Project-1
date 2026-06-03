@@ -7,4 +7,10 @@ Had a follow-up meeting around 13:00 to see status and which tasks are left for 
 ## Tuesday
 Started the meeting with looking through the jira board and assign tickets. Today is the day ETL starts, but we also have some tasks with data-creation and documentation from the day before.
 
+## Wednesday
+Adam has updated new version of the data, called SQDataNEW.zip. We will try to use this one. 
+Finalizing sprint 4 and starting sprint 5 today. Try to get finished with the project today.
+Adam starts power BI Tomas is updating EDR diagrams, Mattias runs the SQL code and does the test queries. 
+Eeva-Leena finishes the ETL documentation
+
 
