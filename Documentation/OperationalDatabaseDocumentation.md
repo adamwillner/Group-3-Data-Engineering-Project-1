@@ -1,7 +1,8 @@
 # Operational Database Documentation
 ## Overview
 The RentalOrderOperationalDB supports the daily operations of a rental business. It stores information about rental items, customers, locations, employees, and rental transactions.
-<img width="975" height="684" alt="image" src="https://github.com/user-attachments/assets/e4567e32-1924-4e0d-8d69-643f196454c2" />
+
+<img width="987" height="766" alt="OperationalDatabaseERD" src="https://github.com/user-attachments/assets/840f7322-e40f-4f5e-997c-73fd760bba84" />
 
 ## Tables
 ### Category
