@@ -77,8 +77,8 @@ Stores customer attributes for analytical reporting.
 | Column           | Source                 |
 | ---------------- | ---------------------- |
 | customer_name    | Customer.customer_name |
-| adress_id        | Address.address_id     |
-| adress           | Address.address        |
+| address_id        | Address.address_id     |
+| address           | Address.address        |
 | city             | Address.city           |
 | country          | Address.country        |
 | customer_type    | Customer.customer_type |
