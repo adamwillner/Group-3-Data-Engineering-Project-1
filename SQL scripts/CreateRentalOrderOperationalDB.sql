@@ -85,7 +85,7 @@ CREATE TABLE Rental (
 	customer_id INT NOT NULL,
 	employee_id INT NULL,
 	rental_location_id INT NOT NULL,
-	return_location_id INT NOT NULL,
+	return_location_id INT NULL,
 	CONSTRAINT FK_Rental_Customer FOREIGN KEY (customer_id) REFERENCES Customer (customer_id),
 	CONSTRAINT FK_Rental_Employee FOREIGN KEY (employee_id) REFERENCES Employee (employee_id),
 	CONSTRAINT FK_Rental_Location_Rental FOREIGN KEY (rental_location_id) REFERENCES Location (location_id),
