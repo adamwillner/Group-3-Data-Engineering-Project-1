@@ -68,13 +68,10 @@ This section documents the **generated dataset** located in `Data/SQLData`. The 
 
 - This is a **larger-scale generated version** of the same business domain as `Data/Test data`, intended for **load/performance testing**.
 - Some rentals contain **multiple rental lines**, meaning one rental transaction can include more than one physical equipment item.
-- `Rental.employee_id` can be **null** when no employee was assigned.
-- `Rental.return_date_time` can be **null** for `Cancelled`, `Overdue`, and `Active` rentals.
-- `Completed` rentals have a non-null `return_date_time`.
-- `Overdue` rentals have a null `return_date_time` and an `end_date_time` before the current reference date.
-- `Active` rentals have a null `return_date_time` and an `end_date_time` on or after the current reference date.
+- `Rental.employee_id` is **null** when the rental took place at a station.
 - `Cancelled` rentals have a null `return_date_time` and zero rental line charges.
-- `ItemInstance.item_status` is non-null for all rows and contains only `0` or `1`.
+- Data is generated for full year 2025. 
+
 
 ## Suggested ingestion / load order
 
