@@ -14,3 +14,15 @@ Adam starts power BI Tomas is updating EDR diagrams, Mattias runs the SQL code a
 Eeva-Leena finishes the ETL documentation
 
 
+## Friday
+Going through the last parts of the sprint backlog
+Deciding who is doing what in the presentation
+
+Tomas is opening the presentation, 2nd slide and database
+Eeva-Leena DW and ETL
+Mattias does validation queries
+Adam is doing PowerBI
+Eeva-Leena does scrum 
+Mattias jira
+Adam does What would we improve
+
